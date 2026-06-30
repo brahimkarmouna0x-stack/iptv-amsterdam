@@ -22,7 +22,9 @@ interface UsePhoneNumberResult {
  *   error       - error message if fetch failed
  */
 export function usePhoneNumber(): UsePhoneNumberResult {
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    process.env.NEXT_PUBLIC_FALLBACK_PHONE ?? "",
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

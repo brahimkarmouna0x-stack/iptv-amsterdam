@@ -6,7 +6,6 @@ import Footer from "@/components/layouts/Footer";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
 import HashScrollManager from "@/components/shared/HashScrollManager";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
-import { getPhoneNumber } from "@/lib/settings";
 import Analytics from "@/components/analytics/Analytics";
 import WebVitals from "@/components/analytics/WebVitals";
 
@@ -114,12 +113,12 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const phoneNumber = await getPhoneNumber();
+  const phoneNumber = process.env.NEXT_PUBLIC_FALLBACK_PHONE ?? "";
   return (
     <html
       lang="nl"
@@ -127,12 +126,6 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <link rel="preconnect" href="https://image.tmdb.org" />
-        <link rel="dns-prefetch" href="https://image.tmdb.org" />
-        <link rel="preconnect" href="https://api.themoviedb.org" />
-        <link rel="dns-prefetch" href="https://api.themoviedb.org" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

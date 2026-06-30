@@ -75,6 +75,30 @@ const nextConfig: NextConfig = {
   // Add security and performance headers
   async headers() {
     return [
+      // ── SEO / crawler-critical routes ──────────────────────────────────────
+      // Explicit Cache-Control ensures Vercel CDN (and any intervening proxy)
+      // stores these files and serves them directly without hitting the Next.js
+      // origin. Without this, a cold-start serverless function can exceed
+      // Google Search Console's 30-second timeout → "Couldn't fetch".
+      {
+        source: "/sitemap.xml",
+        headers: [
+          {
+            key: "Cache-Control",
+            value:
+              "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
+        source: "/robots.txt",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, s-maxage=86400",
+          },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [

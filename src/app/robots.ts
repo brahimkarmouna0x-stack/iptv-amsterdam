@@ -1,5 +1,9 @@
 import { MetadataRoute } from "next";
 
+// Same rationale as sitemap.ts — force build-time static output so Googlebot
+// always receives a plain text response with no streaming/chunked encoding.
+export const dynamic = "force-static";
+
 const baseUrl = "https://iptv-amsterdam.store";
 
 export default function robots(): MetadataRoute.Robots {

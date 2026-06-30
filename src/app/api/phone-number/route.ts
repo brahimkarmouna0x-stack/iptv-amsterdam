@@ -9,20 +9,22 @@ import { getPhoneNumber } from "@/lib/settings";
  *
  * Response: { phone_number: string }
  */
+const CACHE_HEADERS = {
+  "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+};
+
 export async function GET() {
   try {
     const phone_number = await getPhoneNumber();
-    return NextResponse.json({ phone_number });
+    return NextResponse.json({ phone_number }, { headers: CACHE_HEADERS });
   } catch (error) {
     console.error("[api/phone-number] Error:", error);
-    // Return fallback phone number with 200 OK to keep client functional
-
     return NextResponse.json(
       {
         phone_number: process.env.NEXT_PUBLIC_FALLBACK_PHONE ?? "",
         error: "Failed to fetch phone number, using fallback",
       },
-      { status: 200 },
+      { status: 200, headers: CACHE_HEADERS },
     );
   }
 }

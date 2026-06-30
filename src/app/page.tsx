@@ -31,10 +31,6 @@ const Testimonials = dynamic(
   () => import("@/components/sections/Testimonials"),
   { ssr: true },
 );
-const SubscriptionPlans = dynamic(
-  () => import("@/components/sections/SubscriptionPlans"),
-  { ssr: true },
-);
 const Categories = dynamic(() => import("@/components/sections/Categories"), {
   ssr: true,
 });
@@ -113,9 +109,6 @@ export default function Home() {
 
       {/* Social proof */}
       <Testimonials />
-
-      {/* SECTION 2: Subscription Plans overview (Monthly/Quarterly/Semi/Annual) */}
-      <SubscriptionPlans />
 
       {/* Content categories */}
       <Categories />
