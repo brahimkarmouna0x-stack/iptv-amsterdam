@@ -24,7 +24,7 @@ interface LogoProps {
  * essential so `w-auto` derives the proper width and the mark is never
  * letterboxed/shrunk inside a mismatched box (and keeps CLS at zero).
  */
-const LOGO_SRC = "/images/big-logo-site.png";
+const LOGO_SRC = "/images/logo-iptv-amsterdam.png";
 const LOGO_WIDTH = 2000;
 const LOGO_HEIGHT = 700;
 

@@ -59,6 +59,16 @@ const nextConfig: NextConfig = {
         destination: "/iptv-smarters-pro",
         permanent: true,
       },
+      {
+        source: "/iptv-gids/iptv-kopen",
+        destination: "/iptv-kopen",
+        permanent: true,
+      },
+      {
+        source: "/iptv-gids/iptv-aanbieder",
+        destination: "/iptv-aanbieder",
+        permanent: true,
+      },
     ];
   },
 

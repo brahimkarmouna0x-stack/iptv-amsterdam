@@ -1,14 +1,5 @@
 import { MetadataRoute } from "next";
-import { IPTV_GERMAN_PAGES_V2 } from "@/content/iptv-german-pages";
-
-/**
- * Slugs that now live as primary root landing pages and 308-redirect away from
- * /iptv-gids/* — excluded here so the sitemap never lists a redirecting URL.
- */
-const REDIRECTED_VAULT_SLUGS = new Set([
-  "iptv-abonnement",
-  "iptv-smarters-pro",
-]);
+import { IPTV_GERMAN_PAGES_V2, PROMOTED_TO_ROOT } from "@/content/iptv-german-pages";
 
 /** Stable date for legal/about pages that rarely change. */
 const LEGAL_LAST_MOD = new Date("2026-01-15");
@@ -137,7 +128,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // All IPTV vault pages — skip slugs that 308-redirect to root-level pages.
   const vaultPages: MetadataRoute.Sitemap = IPTV_GERMAN_PAGES_V2.filter(
-    (page) => !REDIRECTED_VAULT_SLUGS.has(page.slug),
+    (page) => !PROMOTED_TO_ROOT[page.slug],
   ).map((page) => ({
     url: page.canonicalUrl.replace("https://iptv-amsterdam.store", baseUrl),
     lastModified: new Date(page.updatedAt),
