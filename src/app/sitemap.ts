@@ -1,12 +1,6 @@
 import { MetadataRoute } from "next";
 import { IPTV_GERMAN_PAGES_V2, PROMOTED_TO_ROOT } from "@/content/iptv-german-pages";
 
-// Force build-time static generation. With cacheComponents: true, Route Handlers
-// default to request-time rendering, which can produce streaming responses that
-// Google Search Console cannot parse as XML. This declaration guarantees a plain
-// pre-rendered static response with correct Content-Type and no chunked encoding.
-export const dynamic = "force-static";
-
 /** Stable date for legal/about pages that rarely change. */
 const LEGAL_LAST_MOD = new Date("2026-01-15");
 
@@ -15,7 +9,7 @@ const LEGAL_LAST_MOD = new Date("2026-01-15");
  * Using a fixed build date prevents lastModified churn on every request
  * while still signalling to Google that these pages are current.
  */
-const CONTENT_LAST_MOD = new Date("2026-06-30");
+const CONTENT_LAST_MOD = new Date("2026-07-01");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://iptv-amsterdam.store";
